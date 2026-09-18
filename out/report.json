@@ -1,0 +1,52 @@
+{
+  "rows_in": 2049,
+  "columns_dropped_always_empty": [
+    "City",
+    "Original Source Drill-Down 1",
+    "Annual Revenue",
+    "Marketing contact status",
+    "GDPR consent"
+  ],
+  "blocking": {
+    "candidate_pairs": 513,
+    "brute_force_pairs": 2098176,
+    "reduction_pct": 99.9756
+  },
+  "dedupe": {
+    "auto_merge_threshold": 0.9,
+    "review_threshold": 0.45,
+    "groups": 232,
+    "rows_in_groups": 495,
+    "redundant_rows": 263,
+    "distinct_people_estimate": 1786,
+    "group_size_distribution": {
+      "2": 201,
+      "3": 31
+    },
+    "pairs_in_review_zone": 17,
+    "notes_flagged_rows": 136,
+    "notes_flagged_captured": 136
+  },
+  "normalization": {
+    "lead_status_variants_before": 35,
+    "lead_status_variants_after": 7,
+    "country_variants_before": 62,
+    "country_variants_after": 35,
+    "owner_variants_before": 20,
+    "owner_variants_after": 10,
+    "dates_unparsed": 0
+  },
+  "source_extraction": {
+    "channel_distribution": {
+      "Website": 507,
+      "Event": 374,
+      "Organic Search": 311,
+      "Manual/Sales": 268,
+      "Referral": 241,
+      "LinkedIn": 226,
+      "Other": 122
+    },
+    "needs_llm_review": 162,
+    "mean_confidence": 0.831
+  }
+}
