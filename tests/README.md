@@ -1,14 +1,14 @@
-# `tests/` — 68 test, fokus pada kasus ambigu
+# `tests/` — 70 test, fokus pada kasus ambigu
 
 ```bash
 conda activate WIZ.AI
-python -m pytest -q          # 28 pipeline + 40 API
+python -m pytest -q          # 28 pipeline + 42 API
 ```
 
 | File | Isi |
 |---|---|
 | `test_clean_leads.py` | 28 test — normalisasi, ekstraksi sumber, skor dedup |
-| `test_api.py` | 40 test — 9 endpoint, jalur ingest, isolasi DB |
+| `test_api.py` | 42 test — 9 endpoint, jalur ingest, isolasi DB |
 | `conftest.py` | fixture `api_db` + `client` — DB sementara di `tmp_path` |
 
 README assignment meminta *"enough to show you tested the ambiguous cases, not only
@@ -81,6 +81,8 @@ sendirian, satu dengan field kosong untuk menguji `enrich`.
 | `test_patch_rejects_non_patchable_field` | `PATCH` di luar 3 field yang diizinkan ditolak |
 | `test_patch_normalizes_status_before_storing` | `" new "` masuk sebagai `New`, bukan varian ke-36 |
 | `test_export_route_is_not_shadowed_by_the_id_route` | urutan deklarasi route tidak bisa tertukar diam-diam |
+| `test_unknown_field_is_rejected_not_silently_ignored` | salah ketik nama field jadi 422, bukan 200 tanpa efek |
+| `test_patchable_set_matches_the_patch_schema` | `db.PATCHABLE` dan `LeadPatch` tidak boleh berbeda |
 
 **Konsistensi antar endpoint**
 

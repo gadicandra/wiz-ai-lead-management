@@ -198,9 +198,11 @@ def patch_lead(record_id: str, patch: LeadPatch, con: Con):
     if not fields:
         raise HTTPException(400, "Tidak ada field yang diubah. Field yang bisa diubah: "
                                  + ", ".join(sorted(db.PATCHABLE)))
-    bad = set(fields) - db.PATCHABLE
-    if bad:
-        raise HTTPException(400, f"Field tidak bisa diubah lewat PATCH: {sorted(bad)}")
+    # Field di luar PATCHABLE sudah ditolak lebih awal oleh `LeadPatch`
+    # (extra="forbid") dengan 422 yang menyebutkan nama field-nya. Cek ganda di
+    # sini pernah ada, tapi tidak pernah bisa tercapai -- Pydantic membuang field
+    # asing sebelum handler dipanggil, jadi yang terpicu justru cabang "body
+    # kosong" di atas dan pesan errornya menyesatkan.
 
     row = con.execute("SELECT * FROM leads WHERE record_id = ?", (record_id,)).fetchone()
     if row is None:

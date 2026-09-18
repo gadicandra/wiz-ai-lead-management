@@ -89,8 +89,47 @@ def test_patch_normalizes_status_before_storing(client):
 
 def test_patch_rejects_non_patchable_field(client):
     """email ikut menentukan blocking key -- mengubahnya lewat PATCH akan membuat
-    kunci tidak konsisten dan dedup diam-diam berhenti bekerja."""
-    assert client.patch("/leads/100000001", json={"email": "new@x.com"}).status_code == 400
+    kunci tidak konsisten dan dedup diam-diam berhenti bekerja.
+
+    Yang di-assert bukan cuma "tidak 200", tapi bahwa errornya MENYEBUT `email`.
+    Versi sebelumnya hanya mengecek status 400 dan lolos karena alasan yang
+    salah: Pydantic membuang `email` diam-diam, body jadi kosong, dan yang
+    terpicu adalah cabang "tidak ada field yang diubah". Test-nya hijau,
+    padahal email sama sekali tidak pernah sampai ke pemeriksaan PATCHABLE.
+    """
+    r = client.patch("/leads/100000001", json={"email": "new@x.com"})
+    assert r.status_code == 422
+    assert "email" in r.text
+
+    # dan yang penting: email di DB tidak berubah
+    assert client.get("/leads/100000001").json()["email"] != "new@x.com"
+
+
+def test_patchable_set_matches_the_patch_schema(client):
+    """Dua tempat mendeklarasikan "field apa yang boleh diubah": `db.PATCHABLE`
+    dan model `LeadPatch`. Yang kedua yang benar-benar menjaga (extra="forbid"),
+    yang pertama dipakai untuk pesan error dan sebagai dokumentasi.
+
+    Kalau keduanya berbeda, pesan error akan berbohong tentang apa yang bisa
+    diubah -- dan itu tidak akan ketahuan dari test manapun di atas, karena
+    keduanya tetap berjalan benar secara terpisah.
+    """
+    import db as db_mod
+    from schemas import LeadPatch
+    assert set(LeadPatch.model_fields) == db_mod.PATCHABLE
+
+
+def test_unknown_field_is_rejected_not_silently_ignored(client):
+    """Salah ketik nama field harus terlihat, bukan dibalas 200 tanpa efek.
+
+    `/leads/dedupe-candidates` menerima `lead`; mengirim `record_id` adalah
+    salah ketik yang masuk akal. Sebelum extra="forbid", server membalas 200
+    berisi daftar grup global -- jawaban yang tampak wajar untuk pertanyaan
+    yang tidak pernah diajukan.
+    """
+    r = client.post("/leads/dedupe-candidates", json={"record_id": "100000001"})
+    assert r.status_code == 422
+    assert "record_id" in r.text
 
 
 def test_patch_with_empty_body_is_rejected_not_silently_ok(client):

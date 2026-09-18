@@ -482,7 +482,7 @@ how much cleaning effort is worth it ... is part of what we're evaluating."*
 
 Reviewer melihat **apa yang dipertaruhkan** sebelum menyetujui, bukan hanya skor.
 
-## 2.4 Testing — 68 test, fokus pada yang ambigu
+## 2.4 Testing — 70 test, fokus pada yang ambigu
 
 | Test | Yang dijaga |
 |---|---|
@@ -501,7 +501,7 @@ tetap lolos kalau confidence-nya 0,02 — padahal itu berarti sistem **yakin** m
 orang berbeda, sedangkan yang benar adalah *sistem seharusnya ragu*. Yang dites bukan
 cuma hasilnya, tapi **kadar keyakinannya**.
 
-**39 test API** (`tests/test_api.py`) menjaga hal yang berbeda — perilaku yang bisa
+**42 test API** (`tests/test_api.py`) menjaga hal yang berbeda — perilaku yang bisa
 salah tanpa terlihat:
 
 | Test | Yang dijaga |
@@ -512,6 +512,8 @@ salah tanpa terlihat:
 | `test_ingest_ambiguous_match_creates_lead_but_flags_it` | zona review **membuat** lead, tidak menahannya |
 | `test_patch_normalizes_status_before_storing` | DB tidak terisi ulang dengan 35 varian casing |
 | `test_patch_rejects_non_patchable_field` | kolom kunci tidak bisa dibuat tidak konsisten lewat API |
+| `test_unknown_field_is_rejected_not_silently_ignored` | salah ketik nama field jadi 422, bukan 200 tanpa efek |
+| `test_patchable_set_matches_the_patch_schema` | dua deklarasi "field apa yang boleh diubah" tidak boleh berbeda |
 | `test_q_with_sql_metacharacters_is_not_injected` | `'; DROP TABLE leads; --` → 0 hasil, tabel utuh |
 | `test_export_route_is_not_shadowed_by_the_id_route` | `/leads/export` bukan lead dengan id `"export"` |
 | `test_dashboard_counts_match_the_lead_list` | dashboard dan `GET /leads` tidak boleh saling berbeda |
@@ -523,6 +525,47 @@ Akibatnya mengganti `db.DB_PATH` tidak berpengaruh apa pun dan setiap pemanggila
 tetap membuka DB lama. Di tes gejalanya adalah 16 kegagalan sekaligus; di produksi
 gejalanya adalah tulisan yang diam-diam mendarat di database yang salah.
 
+### Bug kedua: 200 untuk pertanyaan yang tidak pernah diajukan
+
+Yang ini tidak ditemukan oleh tes — tesnya justru ikut tertipu.
+
+Saat mencoba `/leads/dedupe-candidates` lewat `curl`, saya mengirim
+`{"record_id": "100234811"}` padahal nama field-nya `lead`. Server membalas **200**
+berisi daftar 232 grup global. Jawaban yang terlihat sangat wajar, untuk pertanyaan
+yang sama sekali tidak saya ajukan.
+
+Penyebabnya default Pydantic: field yang tidak dikenal **dibuang diam-diam**. Dan
+begitu penyebabnya ketahuan, satu tes yang selama ini hijau ternyata hijau karena
+alasan yang salah:
+
+```python
+# yang saya kira sedang diuji:  email ditolak karena bukan field PATCHABLE
+# yang sebenarnya terjadi:      email dibuang Pydantic → body kosong →
+#                               400 dari cabang "tidak ada field yang diubah"
+assert client.patch("/leads/100000001", json={"email": "new@x.com"}).status_code == 400
+```
+
+Cek `bad = set(fields) - PATCHABLE` di dalam handler tidak pernah bisa tercapai —
+**dead code yang menyamar sebagai pengaman**, dengan sebuah tes hijau menempel di
+atasnya sebagai bukti palsu.
+
+Perbaikannya di batas, bukan di handler: seluruh model request mewarisi satu basis
+`Strict` dengan `extra="forbid"`. Tesnya diperketat — bukan lagi "status 400", tapi
+**errornya harus menyebut nama field-nya** dan **nilai di DB harus tidak berubah**:
+
+```python
+r = client.patch("/leads/100000001", json={"email": "new@x.com"})
+assert r.status_code == 422
+assert "email" in r.text
+assert client.get("/leads/100000001").json()["email"] != "new@x.com"
+```
+
+Pelajaran yang saya ambil: tes yang meng-assert *kode status* saja menguji bahwa
+sesuatu gagal, bukan bahwa sesuatu gagal **karena alasan yang benar**. Dua jalur
+berbeda bisa sampai ke 400 yang sama. Ini varian dari catatan desain tes di dedup —
+`assert REVIEW_T <= conf < MERGE_T`, bukan `assert conf != merge` — dan kali ini
+saya melanggarnya sendiri.
+
 ---
 
 ## 2.5 Lapisan API — keputusan dan alasannya
@@ -532,6 +575,7 @@ gejalanya adalah tulisan yang diam-diam mendarat di database yang salah.
 | 8 | **SQLite**, bukan Postgres atau in-memory | Postgres · dict in-memory | Penilai menjalankan ini di mesin mereka: SQLite menghapus seluruh langkah setup. In-memory ditolak karena `POST /leads/ingest` **menulis** — tanpa persistensi, hasil ingest lenyap dan endpoint-nya jadi demo, bukan fitur. Yang dipakai SQL standar, jadi pindah ke Postgres = ganti driver. |
 | 9 | **Blocking key disimpan sebagai kolom + index**, bukan dihitung saat query | hitung di SQL · scan penuh | `phone_key` butuh ekstraksi digit lalu 9 karakter terakhir; `email_key` butuh strip titik dan tag `+`. Keduanya **tidak bisa** ditulis sebagai ekspresi SQL yang bisa diindeks. Menyimpannya membuat dedup saat ingest jadi 4 lookup terindeks, bukan 2.049 perbandingan. |
 | 10 | **Satu `build_record()` dipakai pipeline offline dan ingest** | normalisasi terpisah per jalur | Kalau ingest menormalisasi sedikit saja berbeda, blocking key-nya meleset dan dedup online gagal menemukan duplikat yang sebenarnya ada — diam-diam, tanpa error. |
+| 10b | **Semua model request `extra="forbid"`** | default Pydantic (buang field asing) | Mengabaikan field asing terlihat ramah, tapi menghasilkan kelas bug yang paling sulit dilihat: server membalas 200, klien yakin sesuatu terjadi, tidak ada yang berubah. Lihat "Bug kedua" di atas — ini bukan kekhawatiran teoretis, saya kena sendiri. |
 | 11 | **Ambang yang sama (0,90 / 0,45) dipakai di ingest** | ambang lebih longgar untuk ingest | Kalibrasi yang sudah divalidasi terhadap 2.049 baris tidak ada alasannya diulang dengan angka berbeda. Buktinya: dry-run 90 payload JSON menghasilkan **49 merge / 41 create** — persis angka yang ditemukan analisis offline lewat jalur yang sepenuhnya berbeda. |
 | 12 | **Zona review saat ingest tetap MEMBUAT lead**, lalu menandainya | tahan di antrian review | Form submission adalah orang nyata yang sedang menunggu ditelepon. Menahannya berarti prospek hangat menganggur sementara seseorang memutuskan. Biaya salahnya asimetris: duplikat yang ditandai bisa digabung nanti, prospek yang hilang tidak bisa dikembalikan. |
 | 13 | **Merge saat ingest hanya mengisi field kosong**, tidak pernah menimpa | timpa dengan data terbaru | Form diisi sendiri oleh lead dan sering lebih miskin (nama panggilan, telepon pribadi) daripada yang sudah diverifikasi sales. Pengecualiannya `notes`, yang di-append karena isinya kronologi. |

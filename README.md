@@ -17,8 +17,8 @@ Spesifikasi asli assignment: [`ASSIGNMENT.md`](ASSIGNMENT.md)
 | 2 | Dedup AI-assisted — `POST /leads/dedupe-candidates` | ✅ 232 grup, reduksi pasangan 99,98% |
 | 3 | Ekstraksi sumber — `POST /source/extract` | ✅ 92,1% via rules, 7,9% ditandai untuk LLM |
 | 4 | Dashboard (bonus) — `GET /dashboard` | ✅ JSON + halaman HTML tanpa build step |
-| — | Test | ✅ **68 passed** (28 pipeline + 40 API) |
-| — | Dokumentasi temuan & keputusan | ✅ 36 temuan, 17 keputusan, next steps |
+| — | Test | ✅ **70 passed** (28 pipeline + 42 API) |
+| — | Dokumentasi temuan & keputusan | ✅ 36 temuan, 18 keputusan, next steps |
 
 ---
 
@@ -47,7 +47,7 @@ Lalu buka:
 Test:
 
 ```bash
-python -m pytest -q          # 68 test
+python -m pytest -q          # 70 test
 cat out/report.json          # seluruh metrik pipeline
 ```
 
@@ -140,7 +140,7 @@ Tanpa dedup, dua kali ingest akan menghasilkan 2.229 baris.
 │   ├── schemas.py         model Pydantic di batas API
 │   ├── api.py             FastAPI — 9 route
 │   └── static/            dashboard HTML (tanpa build step)
-├── tests/                 68 test, fokus pada kasus ambigu
+├── tests/                 70 test, fokus pada kasus ambigu
 ├── out/                   artefak hasil pipeline (di-generate)
 ├── docs/                  dokumentasi lengkap
 └── analysis/              script eksplorasi sekali pakai (jejak kerja)
