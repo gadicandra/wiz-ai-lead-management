@@ -1,0 +1,86 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Lead Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #fbfbfa; --panel: #fff; --ink: #1a1a19; --muted: #6b6b68;
+    --line: #e6e5e1; --accent: #2f6f4e; --warn: #9a5b1f;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#16161a; --panel:#1e1e23; --ink:#eceae5; --muted:#9b9a95;
+            --line:#2e2e35; --accent:#6bbd8e; --warn:#d4a25f; color-scheme: dark; }
+  }
+  * { box-sizing: border-box }
+  body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
+         font:14px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .wrap { max-width: 1040px; margin: 0 auto }
+  h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -.01em }
+  .sub { color: var(--muted); margin: 0 0 28px; font-size: 13px }
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:28px }
+  .kpi { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px }
+  .kpi b { display:block; font-size:26px; font-weight:600; letter-spacing:-.02em }
+  .kpi span { color:var(--muted); font-size:12px }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px 18px }
+  .card h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em;
+             color:var(--muted); margin:0 0 14px; font-weight:600 }
+  .row { display:grid; grid-template-columns:132px 1fr 48px; align-items:center; gap:10px; margin-bottom:7px }
+  .row span:first-child { color:var(--muted); font-size:12.5px; overflow:hidden;
+                          text-overflow:ellipsis; white-space:nowrap }
+  .bar { height:7px; border-radius:4px; background:var(--accent); min-width:2px }
+  .n { text-align:right; font-variant-numeric:tabular-nums; font-size:12.5px }
+  .quality .bar { background: var(--warn) }
+  footer { margin-top:28px; color:var(--muted); font-size:12px }
+  a { color: var(--accent) }
+  .err { background:var(--panel); border:1px solid var(--warn); border-radius:10px;
+         padding:16px; color:var(--warn) }
+</style>
+<div class="wrap">
+  <h1>Lead Dashboard</h1>
+  <p class="sub">Dibaca langsung dari <code>GET /dashboard</code>. Muat ulang untuk angka terbaru.</p>
+  <div id="app">Memuat…</div>
+  <footer>
+    API: <a href="/docs">/docs</a> ·
+    Dokumentasi keputusan: <code>docs/ANALISIS-DATA.md</code>
+  </footer>
+</div>
+<script>
+const fmt = n => n.toLocaleString('id-ID');
+
+function bars(title, obj, cls = '') {
+  const max = Math.max(...Object.values(obj), 1);
+  const rows = Object.entries(obj).map(([k, v]) => `
+    <div class="row">
+      <span title="${k}">${k}</span>
+      <span class="bar" style="width:${(v / max * 100).toFixed(1)}%"></span>
+      <span class="n">${fmt(v)}</span>
+    </div>`).join('');
+  return `<section class="card ${cls}"><h2>${title}</h2>${rows}</section>`;
+}
+
+fetch('/dashboard').then(r => r.json()).then(d => {
+  const q = d.data_quality;
+  document.getElementById('app').innerHTML = `
+    <div class="kpis">
+      <div class="kpi"><b>${fmt(d.total_leads)}</b><span>baris lead</span></div>
+      <div class="kpi"><b>${fmt(q.distinct_people_estimate)}</b><span>perkiraan orang unik</span></div>
+      <div class="kpi"><b>${fmt(q.duplicate_groups)}</b><span>grup duplikat</span></div>
+      <div class="kpi"><b>${fmt(q.redundant_rows)}</b><span>baris redundan</span></div>
+      <div class="kpi"><b>${q.source_needs_llm_pct}%</b><span>sumber perlu LLM</span></div>
+      <div class="kpi"><b>${q.source_mean_confidence}</b><span>confidence rata-rata</span></div>
+    </div>
+    <div class="grid">
+      ${bars('Per status', d.by_status)}
+      ${bars('Per kanal sumber', d.by_channel)}
+      ${bars('Per owner', d.by_owner)}
+      ${bars('Per negara (10 teratas)', d.by_country)}
+      ${bars('Per lifecycle stage', d.by_lifecycle_stage)}
+    </div>`;
+}).catch(e => {
+  document.getElementById('app').innerHTML =
+    `<div class="err"><b>Gagal memuat /dashboard.</b><br>${e}<br><br>
+     Pastikan server berjalan: <code>uvicorn api:app --app-dir src</code></div>`;
+});
+</script>
