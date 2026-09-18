@@ -1,0 +1,52 @@
+json entries: 90
+keys: ['company', 'country', 'email', 'form_id', 'form_name', 'message', 'name', 'page_url', 'phone', 'submitted_at']
+missing-keys pattern: Counter({(): 90})
+
+form_id x form_name combos: 16
+   ('form_pricing', 'Newsletter Signup') 9
+   ('form_contact_general', 'Contact Us') 8
+   ('form_newsletter_signup', 'Pricing Inquiry') 8
+   ('form_contact_general', 'Newsletter Signup') 7
+   ('form_newsletter_signup', 'Newsletter Signup') 7
+   ('form_demo_request', 'Contact Us') 7
+   ('form_pricing', 'Pricing Inquiry') 7
+   ('form_contact_general', 'Pricing Inquiry') 6
+   ('form_demo_request', 'Newsletter Signup') 5
+   ('form_newsletter_signup', 'Book a Demo') 5
+   ('form_pricing', 'Book a Demo') 5
+   ('form_newsletter_signup', 'Contact Us') 4
+
+distinct messages: 39 of 90
+    49  Following up after our earlier conversation, please send more info.
+     2  Saw our post about replacing hubspot and commented.
+     2  Filled out the form on the comparison-vs-hubspot page. Qualifying now.
+
+phones without '+': ['66864834051', '306925417653']
+country casing anomalies: ['malaysia']
+
+JSON email found in seed: 49
+JSON phone(last9) found in seed: 49
+
+  JSON: Karim Toure | k.toure@liutrading.biz | +61 462 210 338 | Liu Trading Studio | Australia
+     Record ID First Name Last Name Full Name        Company Name                   Email     Phone Number Country/Region
+667  100235478      Karim     Toure            Liu Trading Studio  k.toure@liutrading.biz  +61 462 210 338      Australia
+
+  JSON: Vikram Ho | vikram.ho@owusufreight.sg | +61 446 945 707 | Owusu Freight Pte Ltd | Australia
+     Record ID First Name Last Name Full Name           Company Name                      Email     Phone Number Country/Region
+398  100235209     Vikram        Ho            Owusu Freight Pte Ltd  vikram.ho@owusufreight.sg  +61 446 945 707      Australia
+
+  JSON: Sofia Hansen | s.hansen@dialloimports.sg | +45 29 38 67 43 | Diallo Imports Trading Co | Denmark
+     Record ID First Name Last Name Full Name               Company Name                      Email     Phone Number Country/Region
+575  100235386      Sofia    Hansen            Diallo Imports Trading Co  s.hansen@dialloimports.sg  +45 29 38 67 43        Denmark
+
+  JSON: Tariq Mensah | t.mensah@cruzpartners.co | +66 6 7904 4063 | Cruz & Partners Ltd | Thailand
+      Record ID First Name Last Name Full Name         Company Name                     Email     Phone Number Country/Region
+1378  100236189      Tariq    Mensah            Cruz & Partners Ltd  t.mensah@cruzpartners.co  +66 6 7904 4063       Thailand
+
+JSON soft-match (domain-root + name>=88): 49
+  JSON Karim Toure              k.toure@liutrading.biz                 +61 462 210 338      || SEED 100235478 karim toure            k.toure@liutrading.biz                 +61 462 210 338
+  JSON Vikram Ho                vikram.ho@owusufreight.sg              +61 446 945 707      || SEED 100235209 vikram ho              vikram.ho@owusufreight.sg              +61 446 945 707
+  JSON Sofia Hansen             s.hansen@dialloimports.sg              +45 29 38 67 43      || SEED 100235386 sofia hansen           s.hansen@dialloimports.sg              +45 29 38 67 43
+  JSON Tariq Mensah             t.mensah@cruzpartners.co               +66 6 7904 4063      || SEED 100236189 tariq mensah           t.mensah@cruzpartners.co               +66 6 7904 4063
+  JSON Mia Wu                   mia.wu@johnson.biz                     +7 920 778 86 13     || SEED 100236567 mia wu                 mia.wu@johnson.biz                     +7 920 778 86 13
+  JSON Valentina Papadopoulos   valentinap@parkbiotech.net             +48 647 854 101      || SEED 100235145 valentina papadopoulos valentinap@parkbiotech.net             +48 647 854 101

@@ -1,0 +1,4 @@
+clusters=232
+
+=== example PARTIAL clusters (info gained by merging) ===
+total PARTIAL-info clusters: 95

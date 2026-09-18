@@ -1,0 +1,28 @@
+JSON new leads: 41  existing: 49
+JSON internal email dupes: 0
+JSON matches landing on a row already in a dup cluster: 9
+
+Lead Score present rows: 153 ; in clusters: 39
+
+Lead Status x Lifecycle Stage:
+Lifecycle Stage  (blank)  Customer  Lead  Marketing Qualified Lead  Opportunity  Other  Sales Qualified Lead
+Lead Status                                                                                                 
+Closed Lost           46        48    45                        46           46     41                    44
+Closed Won            40        44    33                        36           34     43                    46
+Connected             41        31    46                        40           33     56                    46
+Contacted             40        41    40                        33           35     45                    48
+New                   49        38    41                        37           41     27                    37
+Opportunity           36        46    36                        44           39     43                    47
+Qualified             41        49    55                        34           44     52                    46
+
+Notes-outcome x Lead Status (top mismatches):
+Lead Status                          Closed Lost  Closed Won  Connected  Contacted  New  Opportunity  Qualified
+0                                                                                                              
+(none)                                        89          93         88         81   93           89         97
+Connected, sending proposal                   31          25         25         31   32           32         38
+Great fit, prioritizing                       32          25         27         23   27           32         39
+Left voicemail, will retry                    30          22         27         27   24           24         32
+No response yet                               33          31         30         30   19           26         30
+Not interested for now                        40          27         32         26   19           28         26
+Qualifying now                                27          32         36         41   24           32         28
+Very interested, wants pricing call           34          21         28         23   32           28         31

@@ -1,0 +1,125 @@
+=== ZONE 0.60-0.95 (all) ===
+
+conf=0.791 email=False localnp=False phone=False name=0.89 ini=False comp=1.00 droot=True
+      Record ID First Name Last Name Full Name                    Company Name                          Email       Phone Number Country/Region Lead Status Create Date
+702   100235513      Rania  Andersen            Sim Robotics Freight Solutions     r.andersen@simrobotics.biz    +61 494 298 683      Australia  Closed Won  2026-03-11
+1922  100236733       Hana  Andersen                         Sim Robotics Labs  hana.andersen@simrobotics.biz  +234 802 238 2369        Nigeria   Contacted    6/4/2026
+
+conf=0.788 email=False localnp=False phone=False name=0.88 ini=False comp=1.00 droot=True
+      Record ID First Name Last Name Full Name    Company Name                   Email       Phone Number Country/Region  Lead Status Create Date
+1602  100236413       Ravi  Agyemang            Zhang Holdings    r.agyemang@zhang.biz  +62 824-6373-7659      Indonesia          New    5/5/2026
+1603  100236414        Rin  Agyemang            Zhang Holdings  rin.agyemang@zhang.biz    +48 651 997 369         Poland  Closed Lost  2026-04-01
+
+conf=0.738 email=False localnp=False phone=False name=0.74 ini=False comp=1.00 droot=True
+     Record ID First Name Last Name Full Name       Company Name              Email     Phone Number Country/Region  Lead Status           Create Date
+723  100235534        Ava      Wang            Ho Bros Pte. Ltd.  a.wang@hobros.biz      19165550178  United States    Contacted            11/29/2025
+724  100235535     Fatima      Wang                 Ho Bros Inc.  f.wang@hobros.biz  +92 310 9271085       Pakistan  Closed Lost  2026-01-13T00:00:00Z
+
+conf=0.721 email=False localnp=False phone=False name=0.69 ini=False comp=1.00 droot=True
+     Record ID First Name Last Name       Full Name          Company Name                  Email       Phone Number Country/Region Lead Status Create Date
+753  100235564                       Freya Al-Sayed  Koh & Sons Analytics  f.al-sayed@kohsons.io        46708061815         Sweden  Connected     1/8/2026
+754  100235565     Sophia  Al-Sayed                        Koh & Sons Co.  s.al-sayed@kohsons.io  +86 130 6271 1760          China   Connected  2026-01-17
+
+conf=0.721 email=False localnp=False phone=False name=0.69 ini=False comp=1.00 droot=True
+     Record ID First Name Last Name Full Name    Company Name                      Email       Phone Number Country/Region Lead Status           Create Date
+752  100235563      Freya  Al-Sayed            Koh & Sons Co.  freya.al-sayed@kohsons.io   +46 70 806 18 15         Sweden  Connected   2026-01-08T00:00:00Z
+754  100235565     Sophia  Al-Sayed            Koh & Sons Co.      s.al-sayed@kohsons.io  +86 130 6271 1760          China   Connected            2026-01-17
+
+conf=0.673 email=False localnp=False phone=False name=0.55 ini=False comp=1.00 droot=True
+      Record ID First Name Last Name Full Name               Company Name                    Email     Phone Number  Country/Region Lead Status Create Date
+1626  100236437   Seo-yeon  Ferreira            Popescu Freight Solutions    s.ferreira@popescu.sg  +48 515 287 202          Poland   Contacted  2025-09-16
+1627  100236438        Ava  Ferreira            Popescu Freight Solutions  ava.ferreira@popescu.sg  +44 7924 212108  United Kingdom   Contacted  2026-05-29
+
+
+=== HARD NEGATIVES: same company root, high name sim, different phone AND different email ===
+count: 108
+
+conf=0.470 name_sim=1.00 last_exact=True first_exact=True phone=False local_sim=0.36
+      Record ID First Name Last Name  Full Name            Company Name                     Email       Phone Number Country/Region  Lead Status Create Date
+750   100235561     Marcus        Ho                  Asante Retail Ltd      m.ho@asanteretail.io  +86 132 2249 7096          china  Closed Lost  2025-10-28
+1400  100236211                       Marcus Ho  Asante Retail and Labs  marcush@asanteretail.com     +852 8646 1508      Hong Kong          New   9/21/2025
+
+conf=0.470 name_sim=1.00 last_exact=True first_exact=True phone=False local_sim=0.50
+      Record ID First Name Last Name Full Name          Company Name                      Email       Phone Number Country/Region  Lead Status Create Date
+750   100235561     Marcus        Ho               Asante Retail Ltd       m.ho@asanteretail.io  +86 132 2249 7096          china  Closed Lost  2025-10-28
+1399  100236210     Marcus        Ho            Asante Retail and Co  marcus.h@asanteretail.com     +852 8646 1508      Hong Kong          New  2025-09-21
+
+conf=0.470 name_sim=1.00 last_exact=True first_exact=True phone=False local_sim=0.25
+      Record ID First Name Last Name Full Name            Company Name                        Email      Phone Number Country/Region Lead Status           Create Date
+1458  100236269      Arjun  Carvalho            Lotus Finance Partners       arjunc@lotusfinance.sg   +48 574 740 315         Poland   connected  2025-09-26T00:00:00Z
+1930  100236741      Arjun  Carvalho            Lotus Finance Partners  a.carvalho@lotusfinance.com  +39 373 835 7049          Italy   connected            2026-04-07
+
+conf=0.470 name_sim=1.00 last_exact=True first_exact=True phone=False local_sim=0.70
+      Record ID First Name Last Name Full Name                Company Name                           Email       Phone Number Country/Region Lead Status Create Date
+721   100235532      Lucas   Schmidt            Chua Textiles Retail Group  lucas.schmidt@chuatextiles.biz  +234 803 135 4251        Nigeria         New  2026-02-25
+1091  100235902      Lucas   Schmidt            Chua Textiles Retail Group        lucas.s@chuatextiles.com    +84 91 985 5253        Vietnam   CONNECTED  2025-11-18
+
+conf=0.424 name_sim=0.87 last_exact=True first_exact=False phone=False local_sim=0.31
+     Record ID First Name Last Name Full Name              Company Name                       Email        Phone Number Country/Region Lead Status           Create Date
+792  100235603        Rin   Nkrumah            Asante Retail Consulting    rinn@asanteretail.com.au    +81 82-1607-3153          Japan         New  2025-10-27T00:00:00Z
+991  100235802       Ravi   Nkrumah              Asante Retail Holdings  r.nkrumah@asanteretail.net  +212 6 99 14 63 27        Morocco   Qualified            10/26/2025
+
+conf=0.423 name_sim=0.87 last_exact=True first_exact=False phone=False local_sim=0.35
+      Record ID First Name  Last Name Full Name                 Company Name                             Email      Phone Number Country/Region  Lead Status Create Date
+463   100235274      Bjorn  Rasmussen              Wang Manufacturing Studio      bjornr@wangmanufacturing.net  +880 1550-584664     Bangladesh  Closed Lost   9/17/2025
+1538  100236349      Bruno  Rasmussen            Wang Manufacturing Ventures  b.rasmussen@wangmanufacturing.co     +65 9260 8713      Singapore          new  2025-12-06
+
+conf=0.415 name_sim=0.84 last_exact=True first_exact=False phone=False local_sim=0.53
+      Record ID First Name Last Name Full Name              Company Name                       Email        Phone Number Country/Region Lead Status Create Date
+977   100235788      Elena      Koch            Ang Analytics Consulting     elenak@anganalytics.net  +212 6 99 42 68 10        Morocco  Closed Won   10/8/2025
+1323  100236134       Elin      Koch             Ang Analytics Solutions  elin.koch@anganalytics.biz     +49 155 4896493        Germany   Connected  10/11/2025
+
+conf=0.412 name_sim=0.83 last_exact=True first_exact=False phone=False local_sim=0.62
+     Record ID First Name Last Name Full Name                    Company Name                        Email     Phone Number Country/Region Lead Status           Create Date
+443  100235254      Thanh    Larsen            Adeyemi Logistics Retail Group  thanh.l@adeyemilogistics.sg  +92 370 2742939       Pakistan         New  2025-11-18T00:00:00Z
+692  100235503      Rohan    Larsen                Adeyemi Logistics Ventures   rohanl@adeyemilogistics.io  +49 150 1979970        Germany         New            2026-05-23
+
+conf=0.445 name_sim=0.81 last_exact=True first_exact=False phone=False local_sim=0.35
+      Record ID First Name Last Name Full Name             Company Name                           Email      Phone Number Country/Region  Lead Status Create Date
+1093  100235904      Amina   Boateng                Boateng Digital Ltd     a.boateng@boatengdigital.sg  +971 51 389 3701            UAE          New  2026-02-19
+1781  100236592     Ananya   Boateng            Boateng Digital Freight  ananya.b@boatengdigital.com.au  +971 57 300 9911            UAE  Closed Lost  2026-02-01
+
+conf=0.395 name_sim=0.79 last_exact=True first_exact=False phone=False local_sim=0.64
+      Record ID First Name Last Name Full Name      Company Name                       Email       Phone Number Country/Region  Lead Status Create Date
+595   100235406       Joon   Colombo              Ho Bros Studio     j.colombo@hobros.com.au   +971 56 276 8292            UAE    Connected  2025-12-19
+1642  100236453   So-young   Colombo            Ho Bros Robotics  so-young.colombo@hobros.sg  +33 6 72 15 71 75         France  Opportunity   4/14/2026
+
+conf=0.395 name_sim=0.79 last_exact=True first_exact=False phone=False local_sim=0.64
+      Record ID First Name Last Name Full Name      Company Name                       Email       Phone Number Country/Region  Lead Status Create Date
+596   100235407       Joon   Colombo             Ho Bros Freight     j.colombo@hobros.com.au       971562768292            UAE    Connected  2025-12-19
+1642  100236453   So-young   Colombo            Ho Bros Robotics  so-young.colombo@hobros.sg  +33 6 72 15 71 75         France  Opportunity   4/14/2026
+
+conf=0.394 name_sim=0.78 last_exact=True first_exact=False phone=False local_sim=0.57
+      Record ID First Name Last Name Full Name                        Company Name                        Email       Phone Number Country/Region Lead Status Create Date
+377   100235188      Abena     Singh            Toure Consulting Freight Solutions  abena.s@toureconsulting.biz    +31 6 2625 2435    Netherlands  Closed Won  2025-10-16
+1927  100236738     Ha-eun     Singh                      Toure Consulting Trading   ha-euns@toureconsulting.co  +234 807 327 2259        Nigeria   qualified  2026-01-31
+
+conf=0.394 name_sim=0.78 last_exact=True first_exact=False phone=False local_sim=0.15
+      Record ID First Name Last Name Full Name             Company Name                          Email      Phone Number Country/Region  Lead Status Create Date
+974   100235785        Rui   Johnson             Athens Retail Partners           ruij@athensretail.co  +880 1810-802347     Bangladesh    CONTACTED  2025-09-21
+1543  100236354       Zara   Johnson            Athens Retail Solutions  z.johnson@athensretail.com.au   +91 81039 23731          India  CLOSED LOST  2025-11-14
+
+conf=0.389 name_sim=0.77 last_exact=True first_exact=False phone=False local_sim=0.27
+      Record ID First Name Last Name Full Name      Company Name                      Email       Phone Number Country/Region Lead Status Create Date
+1231  100236042        Ava  Andersen             Johnson Digital           ava.a@johnson.co   +7 984 225 94 20         Russia   Qualified  11/30/2025
+1767  100236578      Pooja  Andersen            Johnson Ventures  p.andersen@johnson.com.au  +55 11 97847-2335         Brazil   Qualified  2026-05-28
+
+conf=0.387 name_sim=0.76 last_exact=True first_exact=False phone=False local_sim=0.57
+     Record ID First Name Last Name Full Name Company Name             Email     Phone Number Country/Region  Lead Status Create Date
+363  100235174      Sarah      Wong             Zahra Inc.  sarah.w@zahra.io  +34 650 606 534          Spain    Qualified  2026-02-18
+671  100235482     Sanjay      Wong             Zahra Labs  sanjayw@zahra.co  +84 91 227 3208        Vietnam  CLOSED LOST  2025-09-30
+
+conf=0.387 name_sim=0.76 last_exact=True first_exact=False phone=False local_sim=0.29
+      Record ID First Name Last Name Full Name         Company Name                    Email      Phone Number  Country/Region  Lead Status Create Date
+1448  100236259      Farah     Bruno            Williams Trading Co     farah.b@williams.com  +880 1836-705278      Bangladesh    connected  2025-12-13
+2042  100236853       Lars     Bruno               Williams Digital  l.bruno@williams.com.au   +44 7900 108062  United Kingdom  Closed Lost  2025-12-03
+
+conf=0.387 name_sim=0.76 last_exact=True first_exact=False phone=False local_sim=0.80
+      Record ID First Name Last Name   Full Name       Company Name                      Email       Phone Number Country/Region  Lead Status Create Date
+983   100235794                       A. Schmidt   Kowalski Pte Ltd  a.schmidt@kowalski.com.au        66660529611       Thailand    Qualified    3/4/2026
+1758  100236569        Rui   Schmidt              Kowalski Partners   rui.schmidt@kowalski.net  +234 803 121 1914        Nigeria  Opportunity  2026-03-02
+
+conf=0.387 name_sim=0.76 last_exact=True first_exact=False phone=False local_sim=0.76
+      Record ID First Name Last Name Full Name          Company Name                           Email       Phone Number Country/Region Lead Status Create Date
+1363  100236174        Kai    Jensen               Sim Robotics & Co      kai.jensen@simrobotics.biz  +33 6 23 87 74 74         France   Qualified  12/16/2025
+2010  100236821       Linh    Jensen            Sim Robotics Pte Ltd  linh.jensen@simrobotics.com.au  +234 802 687 7133        Nigeria   Qualified  2026-02-01

@@ -1,0 +1,24 @@
+marked not captured: 0
+same name+domainroot but NOT clustered: 4
+      Record ID First Name Last Name Full Name          Company Name                      Email       Phone Number Country/Region Create Date
+750   100235561     Marcus        Ho               Asante Retail Ltd       m.ho@asanteretail.io  +86 132 2249 7096          china  2025-10-28
+1399  100236210     Marcus        Ho            Asante Retail and Co  marcus.h@asanteretail.com     +852 8646 1508      Hong Kong  2025-09-21
+
+      Record ID First Name Last Name  Full Name            Company Name                     Email       Phone Number Country/Region Create Date
+750   100235561     Marcus        Ho                  Asante Retail Ltd      m.ho@asanteretail.io  +86 132 2249 7096          china  2025-10-28
+1400  100236211                       Marcus Ho  Asante Retail and Labs  marcush@asanteretail.com     +852 8646 1508      Hong Kong   9/21/2025
+
+      Record ID First Name Last Name Full Name                Company Name                           Email       Phone Number Country/Region Create Date
+721   100235532      Lucas   Schmidt            Chua Textiles Retail Group  lucas.schmidt@chuatextiles.biz  +234 803 135 4251        Nigeria  2026-02-25
+1091  100235902      Lucas   Schmidt            Chua Textiles Retail Group        lucas.s@chuatextiles.com    +84 91 985 5253        Vietnam  2025-11-18
+
+      Record ID First Name Last Name Full Name            Company Name                        Email      Phone Number Country/Region           Create Date
+1458  100236269      Arjun  Carvalho            Lotus Finance Partners       arjunc@lotusfinance.sg   +48 574 740 315         Poland  2025-09-26T00:00:00Z
+1930  100236741      Arjun  Carvalho            Lotus Finance Partners  a.carvalho@lotusfinance.com  +39 373 835 7049          Italy            2026-04-07
+
+
+=== CONFLICTS across 232 clusters ===
+  company string differs                        232  (100%)
+  email differs                                 193  (83%)
+
+=== example: cluster with conflicting Original Source / owner ===

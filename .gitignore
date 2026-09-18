@@ -1,0 +1,47 @@
+# ---- Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.Python
+build/
+dist/
+
+# ---- Test & tooling cache
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# ---- Virtual environments
+.venv/
+venv/
+env/
+
+# ---- Cache intermediate hasil eksplorasi (regenerable, bukan sumber kebenaran)
+analysis/*.pkl
+
+# ---- Database SQLite
+# Artefak teks di out/ sengaja di-commit supaya hasilnya bisa dibaca tanpa
+# menjalankan apa pun. DB-nya tidak: biner 2 MB yang lahir sepenuhnya dari
+# out/leads_clean.csv + out/dedupe_groups.json, dan `python src/load_db.py`
+# membangunnya ulang dalam hitungan detik. Meng-commit-nya hanya menambah diff
+# biner yang tidak bisa direview.
+out/*.db
+out/*.db-wal
+out/*.db-shm
+
+# ---- Paket asli dari penyelenggara (sumbernya sudah diekstrak ke data/)
+candidate_package.zip
+
+# ---- Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ---- Secrets
+.env
+.env.*
+!.env.example

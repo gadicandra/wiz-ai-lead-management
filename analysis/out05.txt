@@ -1,0 +1,102 @@
+=== Notes: 'possible duplicate' marker === 136
+=== Notes blank === 0
+
+=== Notes: distinct 'story' sentence heads (first clause) ===
+    119  Booked a demo via the book-a-demo page after clicking a google ad.
+    102  Linkedin dm inbound asking about pricing.
+     94  Manual - added after inbound phone call.
+     92  Manually added by sales after a phone call from a cold outreach list.
+     91  Saw our post about replacing hubspot and commented.
+     84  Connected on LinkedIn after commenting on our post.
+     82  Other - walked into our office without an appointment.
+     71  Other - reached out via our general info@ inbox.
+     57  Filled out the form on the contact page.
+     53  Filled out the form on the homepage.
+     50  Filled out the form on the pricing page.
+     50  Filled out the form on the product tour page.
+     49  Filled out the form on the comparison-vs-hubspot page.
+     45  Filled out the form on the book-a-demo page.
+     42  Filled out the form on the blog post on lead scoring.
+     42  Filled out the form on the case study page.
+     27  Found us through organic google search then landed on the homepage.
+     27  Found us through organic google search then landed on the contact page.
+     24  Googled us and ended up on the homepage before booking a demo.
+     22  Googled us and ended up on the product tour page before booking a demo.
+     22  Googled us and ended up on the pricing page before booking a demo.
+     22  Googled us and ended up on the contact page before booking a demo.
+     21  Found us through organic google search then landed on the product tour page.
+     20  Found us through organic google search then landed on the book-a-demo page.
+     20  Found us through organic google search then landed on the case study page.
+     19  Found us through organic google search then landed on the comparison-vs-hubspot page.
+     18  Found us through organic google search then landed on the pricing page.
+     17  Found us through organic google search then landed on the blog post on lead scoring.
+     15  Googled us and ended up on the blog post on lead scoring before booking a demo.
+     14  Met her at the TechCrunch Disrupt booth, scanned our QR code.
+     14  Scanned the QR code at our Web Summit 2026 booth.
+     14  Googled us and ended up on the case study page before booking a demo.
+     13  Googled us and ended up on the book-a-demo page before booking a demo.
+     12  Met her at the Mobile World Congress booth, scanned our QR code.
+     12  Scanned the QR code at our Money20/20 Asia booth.
+     12  Met at the booth during SaaStr Annual, said they'd follow up over email.
+     11  Scanned the QR code at our APAC Logistics Summit booth.
+     11  Met her at the Singapore FinTech Festival 2026 booth, scanned our QR code.
+     11  He scanned our QR code at the Singapore FinTech Festival 2026 booth.
+     10  Googled us and ended up on the comparison-vs-hubspot page before booking a demo.
+
+=== Notes: tail clause (outcome) ===
+    220  Qualifying now.
+    214  Connected, sending proposal.
+    205  Great fit, prioritizing.
+    199  No response yet.
+    198  Not interested for now.
+    197  Very interested, wants pricing call.
+    186  Left voicemail, will retry.
+     41  Booked a demo via the book-a-demo page after clicking a google ad.
+     36  Manual - added after inbound phone call.
+     29  Linkedin dm inbound asking about pricing.
+     28  Saw our post about replacing hubspot and commented.
+     26  Connected on LinkedIn after commenting on our post.
+     26  Other - walked into our office without an appointment.
+     24  Manually added by sales after a phone call from a cold outreach list.
+     23  Filled out the form on the contact page.
+     17  Filled out the form on the homepage.
+     17  Filled out the form on the comparison-vs-hubspot page.
+     16  Other - reached out via our general info@ inbox.
+     15  Filled out the form on the case study page.
+     13  Filled out the form on the book-a-demo page.
+
+=== Company suffix tokens ===
+suspicious 'and' companies: 95
+['Lindqvist AB and Co', 'Sato and Co', 'Huang Analytics and Co', 'Huang Analytics and Pte. Ltd.', 'Mensah Trading and Co', 'BluePeak and Co', 'Chen Digital and Co', 'Chen Digital and and Co', 'Chen Digital and Group', 'Verma Consulting and Co', 'Wong Legal and Co', 'Sayed Trading and Co', 'Sayed Trading and Digital', 'Larsen AS and Co', 'Silva and Co', 'Silva and Solutions', 'Lau and Co', 'Han Imports and Co', 'Jung Studio and Co', 'Ivanova and Co']
+
+suffix freq:
+  ' Co'                        178
+  ' Solutions'                 162
+  ' Group'                     153
+  ' Trading'                   94
+  ' Pte. Ltd.'                 91
+  ' Ltd'                       89
+  ' Holdings'                  89
+  'and Co'                     88
+  ' Co.'                       88
+  ' Freight'                   86
+  ' Inc.'                      84
+  ' Inc'                       82
+  ' Consulting'                82
+  '& Co'                       81
+  ' Studio'                    81
+  ' Robotics'                  80
+  ' Ventures'                  76
+  ' Pte Ltd'                   75
+  ' Analytics'                 71
+  ' Digital'                   69
+  ' Labs'                      65
+  ' Partners'                  65
+  'and Group'                  2
+  '& Holdings'                 2
+  'and Digital'                2
+  'and Solutions'              2
+  '& Robotics'                 2
+  '& Co.'                      2
+  'and Studio'                 2
+  'and Pte. Ltd.'              1
