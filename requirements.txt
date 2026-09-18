@@ -1,0 +1,16 @@
+# Diuji pada Python 3.12.14 (conda env: SHE)
+# Versi di-pin ke yang benar-benar dipakai, bukan ">=", supaya hasil pipeline
+# reproducible — skor rapidfuzz bisa berubah antar versi minor.
+
+# --- pipeline (src/clean_leads.py)
+pandas==3.0.5
+rapidfuzz==3.14.6
+
+# --- REST API (src/api.py)
+fastapi==0.141.1
+uvicorn==0.53.0
+pydantic==2.13.5
+
+# --- test
+pytest==9.1.1
+httpx==0.28.1        # dipakai fastapi.testclient
